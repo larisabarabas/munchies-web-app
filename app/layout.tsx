@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="font-sfPro antialiased bg-munchie-white-off mt-14 ml-10"
+        className="font-sfPro antialiased min-h-screen"
       >
         {children}
       </body>
