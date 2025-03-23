@@ -1,14 +1,11 @@
-import React from 'react'
 import FilterCard from './FilterCard';
 
-// Props: filters[]
-
-const FilterCardsScrollable = () => {
+const FilterCardsScrollable = ({filters}:FiltersResponse) => {
   return (
     <div className="w-full overflow-x-auto no-scrollbar scroll-smooth snap-x min-w-0">
         <div className="flex gap-3">
-          {[...Array(14)].map((_, index) => (
-          <FilterCard key={index}/>
+          {filters.map((filter) => (
+            <FilterCard key={filter.id} filter={filter}/>
           ))}
         </div>
     </div>
