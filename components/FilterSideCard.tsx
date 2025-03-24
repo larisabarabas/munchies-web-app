@@ -13,7 +13,7 @@ const deliveryTimeValues = [
 
 const priceRangeValues: string[] = ['$', '$$', '$$$', '$$$$'];
 
-const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolean, staticContent: StaticContent, filters: Filter[] }) => {
+const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolean, staticContent: StaticContent, filters: CategoryFilter[] }) => {
   const isFromMobile = useDeviceType(isMobile);
   const { category, price_range, delivery_time, setCategory, setDeliveryTime, setPriceRange } = useFilterStore();
 
