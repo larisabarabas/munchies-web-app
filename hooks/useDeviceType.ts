@@ -5,16 +5,20 @@ export function useDeviceType(initialIsMobile:boolean) {
   const [isMobile, setIsMobile] = useState(initialIsMobile);
 
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
 
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
+    const mediaQuery = window.matchMedia('(max-width: 768px)')
 
+    const handleResize = (event: MediaQueryListEvent) => {
+      setIsMobile(event.matches)
+    }
+
+    setIsMobile(mediaQuery.matches)
+
+    mediaQuery.addEventListener('change', handleResize)
+    
     return () => {
-      window.removeEventListener('resize', checkMobile);
-    };
+      mediaQuery.removeEventListener('change', handleResize)
+    }
   }, []);
 
   return isMobile;
