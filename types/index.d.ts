@@ -35,3 +35,8 @@ interface ErrorResponse {
     error: boolean,
     reason: string
 }
+
+interface RestaurantsProps {
+    filters: Filter[];
+    restaurants: Restaurant[];
+  }

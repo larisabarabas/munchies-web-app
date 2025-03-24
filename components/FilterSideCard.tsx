@@ -29,8 +29,9 @@ const FilterSideCard = ({ isMobile }: { isMobile: boolean }) => {
       <div className="my-6">
       <p className="uppercase text-sm">Delivery Time</p>
       <div className="mt-4 flex gap-2.5">
-        <Badge variant="outline" className="rounded-lg border-munchies-gray py-2 px-3">5-10 min</Badge>
-        <Badge variant="outline" className="rounded-lg border-munchies-gray py-2 px-3">10-15 min</Badge>
+          {deliveryTimeValues.map((value)=> (
+            <Badge key={value} variant="outline" className="rounded-lg border-munchies-gray bg-white py-2 px-3">{value}</Badge>
+          ))}
       </div>
     </div>
     )

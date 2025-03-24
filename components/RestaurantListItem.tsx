@@ -6,6 +6,7 @@ import {ArrowRight} from "lucide-react"
 
 
 const RestaurantListItem = ({ restaurant }: { restaurant: Restaurant }) => {
+  // check if restaurant is open ==> greyed out card
   return (
     <div className="w-[327px] h-[202px] bg-white border-munchies-gray rounded-lg shadow-sm relative overflow-hidden flex flex-col justify-between p-4">
        <div>

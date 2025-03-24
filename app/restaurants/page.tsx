@@ -70,7 +70,6 @@ const Restaurants = () => {
         <div className="flex-grow md:mt-6 mt-6">
           <RestaurantListView restaurants={restaurants}/>
         </div>
-
       </div>
     </div>
   </div>
