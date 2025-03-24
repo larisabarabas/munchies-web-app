@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import React from 'react';
 
-const FilterCard = React.memo(({filter, onSelect, isSelected} : {filter:Filter, onSelect: (filter:Filter) => void, isSelected:boolean}) => {
+const FilterCard = React.memo(({filter, onSelect, isSelected} : {filter:CategoryFilter, onSelect: (filter:CategoryFilter) => void, isSelected:boolean}) => {
   return (
     <div className={`shrink-0 w-[160px] h-[80px] border bg-white rounded-md px-3 py-4 flex flex-row relative hover:shadow-lg cursor-pointer ${isSelected ? 'border-munchies-green' : 'border-munchies-gray'}`} onClick={() => onSelect(filter) }>
       <div className='text-wrap'>
