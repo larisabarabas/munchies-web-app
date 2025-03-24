@@ -11,7 +11,7 @@ const Restaurants = async () => {
   const restaurants = await getRestaurants()
   const filters = await getFilters()
   const content = await getFilterStaticContent()
-  console.log(content)
+
   return (
   <div>
     <Image

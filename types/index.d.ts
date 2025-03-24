@@ -1,11 +1,7 @@
-interface Filter {
+interface CategoryFilter {
     id: string,
     name: string,
     image_url: string
-}
-
-interface FiltersResponse {
-    filters: Filter[]
 }
 
 interface Restaurant {
@@ -14,7 +10,9 @@ interface Restaurant {
     rating: number,
     filter_ids: string[],
     image_url: string,
-    delivery_time_minutes: integer
+    delivery_time_minutes: integer,
+    price_range_id: string,
+    price_range?: string
 }
 
 interface RestaurantsResponse{
@@ -23,7 +21,7 @@ interface RestaurantsResponse{
 
 interface OpenStatus {
     restaurant_id: string,
-    is_currently_open: boolean
+    is_open: boolean
 }
 
 interface PriceRange {
@@ -36,18 +34,23 @@ interface ErrorResponse {
     reason: string
 }
 
-interface RestaurantsProps {
-    filters: Filter[];
-    restaurants: Restaurant[];
-}
-
 interface StaticContent {
     body: { key: string, value: string }[];
     key: string,
     name: string,
 }
 
-type State = {
-    selectedFilter: Filter | null;
-    setFilter: (filter: Filter) => void
+interface State {
+    category: CategoryFilter | null;
+    price_range: string,
+    delivery_time: DeliveryTimeInterval | null,
+    setCategory: (category_filter: CategoryFilter) => void,
+    setPriceRange: (price_range: string) => void,
+    setDeliveryTime: (delivery_time: DeliveryTimeInterval) => void 
+}
+
+interface DeliveryTimeInterval {
+    id: number,
+    min: number,
+    max: number
 }

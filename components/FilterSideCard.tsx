@@ -6,7 +6,7 @@ import { GetServerSideProps } from 'next';
 import { NextApiRequest } from 'next';
 
 import { useDeviceType } from "@/hooks/useDeviceType";
-import { extractStaticValue } from "@/lib/utils";
+import { extractStaticValue, getDeliveryTimeStringInterval } from "@/lib/utils";
 import { useFilterStore } from "@/store/useFilterStore";
 
 export const getServerSideProps: GetServerSideProps = async ({ req }) => {
@@ -22,17 +22,39 @@ export const getServerSideProps: GetServerSideProps = async ({ req }) => {
 
 const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolean, staticContent: StaticContent, filters: Filter[] }) => {
   const isFromMobile = useDeviceType(isMobile);
-  const deliveryTimeValues:string[] = ['0-10 min', '10-30 min', '30-60 min', '1 hour+'];
+  const deliveryTimeValues = [
+    {
+      id:0,
+      min: 0,
+      max: 10
+    },
+    {
+      id:1,
+      min: 10,
+      max: 30
+    },
+    {
+      id:2,
+      min:30,
+      max: 60
+    },
+    {
+      id:3,
+      min: 60,
+      max: 100
+    }
+  ];
   const priceRangeValues:string[] = ['$', '$$', '$$$', '$$$$'];
-  const {selectedFilter, setFilter} = useFilterStore();
+  const {category, price_range, delivery_time, setCategory, setDeliveryTime, setPriceRange} = useFilterStore();
+
 
   if(isFromMobile){
     return (
       <div className="my-6">
       <p className="uppercase text-sm opacity-40 font-medium">Delivery Time</p>
       <div className="mt-4 flex gap-2.5">
-          {deliveryTimeValues.map((value)=> (
-            <Badge key={value} variant="outline" className="rounded-lg border-munchies-gray bg-white py-2 px-3">{value}</Badge>
+          {deliveryTimeValues.map((item)=> (
+            <Badge key={item.id} onClick={() => setDeliveryTime(item)} variant="outline" className={`rounded-lg py-2 px-3 cursor-pointer ${delivery_time?.id === item.id ? 'border-munchies-green' : 'border-munchies-gray'}`}>{getDeliveryTimeStringInterval(item)}</Badge>
           ))}
       </div>
     </div>
@@ -45,8 +67,8 @@ const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolea
         <p className="uppercase text-sm opacity-40 font-medium">{extractStaticValue(staticContent, 'food-category')}</p>
         <div className="mt-4 grid gap-2.5">
           {
-            filters.map((filter: Filter) => (
-              <Badge key={filter.id} onClick={() => setFilter(filter)} variant="outline" className={`rounded-lg border-munchies-gray py-2 px-3 cursor-pointer ${selectedFilter?.id === filter.id ? 'border-munchies-green' : 'border-munchies-gray'}`}>{filter.name}</Badge>
+            filters.map((filter: CategoryFilter) => (
+              <Badge key={filter.id} onClick={() => setCategory(filter)} variant="outline" className={`rounded-lg border-munchies-gray py-2 px-3 cursor-pointer ${category?.id === filter.id ? 'border-munchies-green' : 'border-munchies-gray'}`}>{filter.name}</Badge>
             ))
           }
         </div>
@@ -54,8 +76,8 @@ const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolea
       <div className="my-8">
         <p className="uppercase text-sm opacity-40 font-medium">{extractStaticValue(staticContent, 'delivery-time')}</p>
         <div className="mt-4 flex flex-wrap gap-2.5">
-          {deliveryTimeValues.map((value)=> (
-            <Badge key={value} variant="outline" className="rounded-lg border-munchies-gray py-2 px-3">{value}</Badge>
+          {deliveryTimeValues.map((item)=> (
+            <Badge key={item.id} onClick={() => setDeliveryTime(item)} variant="outline" className={`rounded-lg py-2 px-3 cursor-pointer ${delivery_time?.id === item.id ? 'border-munchies-green' : 'border-munchies-gray'}`}>{getDeliveryTimeStringInterval(item)}</Badge>
           ))}
         </div>
       </div>
@@ -63,7 +85,7 @@ const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolea
         <p className="uppercase text-sm opacity-40 font-medium">{extractStaticValue(staticContent, 'price-range')}</p>
         <div className="mt-4 flex flex-wrap gap-2.5">
           {priceRangeValues.map((value)=> (
-            <Badge key={value} variant="outline" className="rounded-lg border-munchies-gray p-2">{value}</Badge>
+            <Badge key={value} onClick={() => setPriceRange(value)} variant="outline" className={`rounded-lg border-munchies-gray p-2 cursor-pointer ${price_range === value ? 'border-munchies-green' : 'border-munchies-gray'} `}>{value}</Badge>
           ))}
         </div>
       </div>

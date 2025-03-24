@@ -4,7 +4,8 @@ import Image from "next/image";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import {ArrowRight} from "lucide-react"
-import { useIsRestaurantOpen } from "@/hooks/useDeviceType";
+import { useIsRestaurantOpen } from "@/hooks/useIsRestaurantOpen";
+
 
 
 const RestaurantListItem = ({ restaurant }: { restaurant: Restaurant }) => {

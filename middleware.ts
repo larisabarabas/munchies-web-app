@@ -5,8 +5,6 @@ export function middleware(request:NextRequest) {
     const userAgent = request.headers.get('user-agent') || '';
     const isMobile = /Mobile|Android|iPhone|iPad/i.test(userAgent);
 
-    console.log("isMobile:", isMobile)
-
      // Redirect mobile users from "/" to "/splash-screen"
     if (isMobile && request.nextUrl.pathname === '/') {
         return NextResponse.redirect(new URL('/splash-screen', request.url));

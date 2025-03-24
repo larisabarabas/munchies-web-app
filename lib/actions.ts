@@ -43,7 +43,14 @@ export const getRestaurants = async() => {
     try {
         const response = await fetch(url)
         const data = await response.json()
-        return data.restaurants
+        const restaurants = await Promise.all(data.restaurants.map(async (restaurant: Restaurant) => {
+            const priceRange = await getPriceRange(restaurant.price_range_id)
+            return {
+                ...restaurant,
+                price_range: priceRange
+            }
+        }))
+        return restaurants
     } catch (error) {
         console.error('Failed fetching restaurants:',error)
         throw new Error('Failed fetching restaurants. Please try again later!')
@@ -54,10 +61,22 @@ export const getIsRestaurantOpen = async(id: string) => {
     const url = constructUrl('/api/open', [id])
     try {
         const response = await fetch(url)
-        const data = await response.json()
+        const data:OpenStatus = await response.json()
         return data.is_open
     } catch (error) {
         console.error('Failed fetching restaurant data:',error)
         throw new Error('Failed fetching restaurant data. Please try again later!')
+    }
+}
+
+export const getPriceRange = async(id: string) => {
+    const url = constructUrl('/api/price-range', [id])
+    try {
+        const response = await fetch(url)
+        const data = await response.json()
+        return data.range
+    } catch (error) {
+        console.error('Failed fetching price_range:',error)
+        throw new Error('Failed fetching price_range. Please try again later!')
     }
 }
