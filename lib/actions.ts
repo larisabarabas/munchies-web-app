@@ -45,9 +45,11 @@ export const getRestaurants = async() => {
         const data = await response.json()
         const restaurants = await Promise.all(data.restaurants.map(async (restaurant: Restaurant) => {
             const priceRange = await getPriceRange(restaurant.price_range_id)
+            const isOpen = await getIsRestaurantOpen(restaurant.id)
             return {
                 ...restaurant,
-                price_range: priceRange
+                price_range: priceRange,
+                isOpen: isOpen
             }
         }))
         return restaurants

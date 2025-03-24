@@ -12,7 +12,8 @@ interface Restaurant {
     image_url: string,
     delivery_time_minutes: integer,
     price_range_id: string,
-    price_range?: string
+    price_range?: string,
+    isOpen?: boolean
 }
 
 interface RestaurantsResponse{
