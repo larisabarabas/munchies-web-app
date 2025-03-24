@@ -39,4 +39,15 @@ interface ErrorResponse {
 interface RestaurantsProps {
     filters: Filter[];
     restaurants: Restaurant[];
-  }
+}
+
+interface StaticContent {
+    body: { key: string, value: string }[];
+    key: string,
+    name: string,
+}
+
+type State = {
+    selectedFilter: Filter | null;
+    setFilter: (filter: Filter) => void
+}

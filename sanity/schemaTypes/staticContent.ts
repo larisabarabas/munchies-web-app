@@ -14,8 +14,8 @@ export const staticContentType = defineType(
                 validation: (Rule) => Rule.required(),
             }),
             defineField({
-                name: 'title',
-                title: 'Title',
+                name: 'name',
+                title: 'Name',
                 type: 'string',
                 validation: (Rule) => Rule.required(),
                 
