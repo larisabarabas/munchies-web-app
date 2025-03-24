@@ -21,7 +21,7 @@ const Restaurants = async () => {
       height={40}
       className="w-[167px] h-[24px] lg:w-[273.42px] lg:h-[40px]"
     />
-    <div className="min-h-screen flex flex-col md:flex-row mt-0 lg:mt-12">
+    <div className="min-h-screen flex flex-col md:flex-row mt-0 lg:mt-12 md:mt-5">
       <div className="w-full md:w-[239px] mr-5">
         <FilterSideCard isMobile staticContent={content[0]} filters={filters} />
       </div>

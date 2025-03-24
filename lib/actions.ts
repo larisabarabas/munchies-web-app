@@ -2,7 +2,7 @@
 import { sanityFetch } from '@/sanity/lib/live';
 import {FILTER_STATIC_CONTENT_QUERY, SPLASH_SCREEN_STATIC_CONTENT_QUERY} from '@/sanity/lib/queries'
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://work-test-web-2024-eze6j4scpq-lz.a.run.app"
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? ""
 
 const constructUrl = (endpoint: string, params?: string[]) => {
     let fullEndpoint = endpoint
