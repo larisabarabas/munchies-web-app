@@ -44,7 +44,7 @@ const SplashScreen = () => {
 
     return (
         <div className='bg-munchies-green text-white min-h-screen pt-14 pb-6 px-6 grid content-between'>
-            <Image src={logoWhite} alt="Munchies White Logo" width={167} height={24}/>
+            <Image src={logoWhite} alt="Munchies White Logo" width={167} height={24} priority={false}/>
             <div className='grid gap-4 w-[246px]'>
                  <p className='text-5xl font-extrabold'>{staticContent?.body?.find(item => item.key === 'title')?.value}</p>
                  <p className='text-wrap'>{staticContent?.body?.find(item => item.key === 'content')?.value}</p>

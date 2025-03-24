@@ -31,7 +31,7 @@ const RestaurantListItem = ({ restaurant }: { restaurant: Restaurant }) => {
           src={`/assets${restaurant.image_url}`}
           width={140}
           height={140}
-          quality={100}
+          priority={false}
           alt="Card image"
           className={`absolute -top-9 -right-4 object-cover ${!restaurant.isOpen ? 'grayscale opacity-40' : ''}`}
         />
