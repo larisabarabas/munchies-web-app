@@ -4,6 +4,7 @@ import { useDeviceType } from "@/hooks/useDeviceType";
 import { extractStaticValue, getDeliveryTimeStringInterval } from "@/lib/utils";
 import { useFilterStore } from "@/store/useFilterStore";
 
+// Hard coded delivery time interval 
 const deliveryTimeValues = [
   { id: 0, min: 0, max: 10 },
   { id: 1, min: 10, max: 30 },
@@ -11,6 +12,7 @@ const deliveryTimeValues = [
   { id: 3, min: 60, max: 100 },
 ];
 
+// Hard coded price range values 
 const priceRangeValues: string[] = ['$', '$$', '$$$', '$$$$'];
 
 const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolean, staticContent: StaticContent, filters: CategoryFilter[] }) => {

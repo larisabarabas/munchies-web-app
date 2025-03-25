@@ -16,9 +16,6 @@ interface Restaurant {
     isOpen?: boolean
 }
 
-interface RestaurantsResponse{
-    restaurants: Restaurant[]
-} 
 
 interface OpenStatus {
     restaurant_id: string,
