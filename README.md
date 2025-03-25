@@ -41,7 +41,7 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to access the web app.
-Open [http://localhost:3333](http://localhost:3333) with your browser to access sanity studio for content management.
+Open [http://localhost:3000/sanity-studio](http://localhost:3000/sanity-studio) with your browser to access sanity studio for content management.
 
 ## Project details
 
