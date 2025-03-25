@@ -19,8 +19,8 @@ const Restaurants = async () => {
       alt="Munchies Logo Black"
       width={273.42}
       height={40}
-      className="w-[167px] h-[24px] lg:w-[273.42px] lg:h-[40px]"
-      priority={false}
+      className="w-auto h-[24px] lg:h-[40px]"
+      priority
     />
     <div className="min-h-screen flex flex-col md:flex-row mt-0 lg:mt-12 md:mt-5">
       <div className="w-full md:w-[239px] mr-5">

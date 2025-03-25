@@ -33,7 +33,7 @@ const RestaurantListItem = ({ restaurant }: { restaurant: Restaurant }) => {
           height={140}
           priority={false}
           alt="Card image"
-          className={`absolute -top-9 -right-4 object-cover ${!restaurant.isOpen ? 'grayscale opacity-40' : ''}`}
+          className={`absolute -top-9 -right-4 object-cover w-auto ${!restaurant.isOpen ? 'grayscale opacity-40' : ''}`}
         />
       </div>
       <div className="flex flex-row justify-between content-center">
