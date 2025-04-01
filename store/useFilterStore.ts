@@ -23,7 +23,11 @@ export const useFilterStore = create(
             })),
             setPriceRange: (price_range) => set(((state) => ({
                 price_range: state.price_range === price_range ? '' : price_range
-            })))
+            }))),
+            clearFilters: () => {
+                set({categories: [], price_range: '', delivery_time: null})
+                localStorage.removeItem('filters-storage')
+            }
         }),
         {
             name: 'filters-storage'

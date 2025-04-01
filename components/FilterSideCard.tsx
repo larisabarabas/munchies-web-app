@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { useDeviceType } from "@/hooks/useDeviceType";
 import { extractStaticValue, getDeliveryTimeStringInterval } from "@/lib/utils";
 import { useFilterStore } from "@/store/useFilterStore";
+import { Button } from "./ui/button";
 
 // Hard coded delivery time interval 
 const deliveryTimeValues = [
@@ -19,7 +20,7 @@ const priceRangeValues: string[] = ['$', '$$', '$$$', '$$$$'];
 
 const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolean, staticContent: StaticContent, filters: CategoryFilter[] }) => {
   const isFromMobile = useDeviceType(isMobile);
-  const { categories, price_range, delivery_time, setCategories, setDeliveryTime, setPriceRange } = useFilterStore();
+  const { categories, price_range, delivery_time, setCategories, setDeliveryTime, setPriceRange, clearFilters } = useFilterStore();
 
   const renderDeliveryTimeBadges = () => (
     deliveryTimeValues.map((item) => (
@@ -92,7 +93,15 @@ const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolea
           {renderPriceRangeBadges()}
         </div>
       </div>
+      {
+        (categories.length || delivery_time || price_range) && (
+          <div className="my-8">
+            <Button variant="outline" className="border-munchies-gray hover:border-munchies-green rounded cursor-pointer" onClick={() => clearFilters()}>Clear Filters</Button>
+          </div>
+        )
+      }
     </div>
+    
   );
 };
 
