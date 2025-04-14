@@ -3,11 +3,14 @@ import RestaurantListItem from "./RestaurantListItem";
 
 import { useFilterStore } from "@/store/useFilterStore";
 
+
+
 const RestaurantListView = ({restaurants}: {restaurants: Restaurant[]}) => {
-  const {category, price_range, delivery_time} = useFilterStore()
+  const {price_range, delivery_time, categories} = useFilterStore()
+
   const filteredList = restaurants.filter((item) => {
     return (
-      (!category || item.filter_ids.includes(category.id)) &&
+      (categories.length === 0 || categories.some(category => item.filter_ids.includes(category.id))) &&
       (!price_range || item.price_range === price_range) &&
       (!delivery_time || (Number(delivery_time.min) <= item.delivery_time_minutes && item.delivery_time_minutes < Number(delivery_time.max)))
     )

@@ -3,6 +3,7 @@ import { Badge } from "@/components/ui/badge";
 import { useDeviceType } from "@/hooks/useDeviceType";
 import { extractStaticValue, getDeliveryTimeStringInterval } from "@/lib/utils";
 import { useFilterStore } from "@/store/useFilterStore";
+import { Button } from "./ui/button";
 
 // Hard coded delivery time interval 
 const deliveryTimeValues = [
@@ -15,9 +16,11 @@ const deliveryTimeValues = [
 // Hard coded price range values 
 const priceRangeValues: string[] = ['$', '$$', '$$$', '$$$$'];
 
+
+
 const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolean, staticContent: StaticContent, filters: CategoryFilter[] }) => {
   const isFromMobile = useDeviceType(isMobile);
-  const { category, price_range, delivery_time, setCategory, setDeliveryTime, setPriceRange } = useFilterStore();
+  const { categories, price_range, delivery_time, toggleCategories, setDeliveryTime, setPriceRange, clearFilters } = useFilterStore();
 
   const renderDeliveryTimeBadges = () => (
     deliveryTimeValues.map((item) => (
@@ -49,9 +52,9 @@ const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolea
     filters.map((filter: CategoryFilter) => (
       <Badge
         key={filter.id}
-        onClick={() => setCategory(filter)}
+        onClick={() => toggleCategories(filter)}
         variant="outline"
-        className={`rounded-lg border-munchies-gray py-2 px-3 cursor-pointer ${category?.id === filter.id ? 'border-munchies-green' : 'border-munchies-gray'}`}
+        className={`rounded-lg border-munchies-gray py-2 px-3 cursor-pointer ${categories.some(category => category.id === filter.id) ? 'border-munchies-green' : 'border-munchies-gray'}`}
       >
         {filter.name}
       </Badge>
@@ -90,7 +93,15 @@ const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolea
           {renderPriceRangeBadges()}
         </div>
       </div>
+      {
+        (categories.length || delivery_time || price_range) && (
+          <div className="my-8">
+            <Button variant="outline" className="border-munchies-gray hover:border-munchies-green rounded cursor-pointer" onClick={() => clearFilters()}>Clear Filters</Button>
+          </div>
+        )
+      }
     </div>
+    
   );
 };
 

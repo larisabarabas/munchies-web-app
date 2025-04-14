@@ -39,12 +39,13 @@ interface StaticContent {
 }
 
 interface State {
-    category: CategoryFilter | null;
     price_range: string,
     delivery_time: DeliveryTimeInterval | null,
-    setCategory: (category_filter: CategoryFilter) => void,
+    categories: CategoryFilter[],
+    toggleCategories: (category: CategoryFilter) => void,
     setPriceRange: (price_range: string) => void,
-    setDeliveryTime: (delivery_time: DeliveryTimeInterval) => void 
+    setDeliveryTime: (delivery_time: DeliveryTimeInterval) => void,
+    clearFilters: () => void
 }
 
 interface DeliveryTimeInterval {
