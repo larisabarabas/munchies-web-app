@@ -8,7 +8,7 @@ export const useFilterStore = create(
             price_range: '',
             delivery_time:null,
             categories: [],
-            setCategories: (category) => {
+            toggleCategories: (category) => {
                 set((state) => {
                     const exists = state.categories?.some((item) => item.id === category.id);
                     return {

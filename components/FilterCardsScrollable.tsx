@@ -4,11 +4,11 @@ import FilterCard from './FilterCard';
 import React, {useCallback} from 'react';
 
 const FilterCardsScrollable = ({filters}:{filters: CategoryFilter[]}) => {
-  const {categories, setCategories} = useFilterStore()
+  const {categories, toggleCategories} = useFilterStore()
 
     const handleOnSelect = useCallback((item:CategoryFilter) => {
-      setCategories(item)
-    }, [setCategories])
+      toggleCategories(item)
+    }, [toggleCategories])
 
   if(!filters.length) return <p>No filters.</p>
 

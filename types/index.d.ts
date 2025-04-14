@@ -42,7 +42,7 @@ interface State {
     price_range: string,
     delivery_time: DeliveryTimeInterval | null,
     categories: CategoryFilter[],
-    setCategories: (category: CategoryFilter) => void,
+    toggleCategories: (category: CategoryFilter) => void,
     setPriceRange: (price_range: string) => void,
     setDeliveryTime: (delivery_time: DeliveryTimeInterval) => void,
     clearFilters: () => void

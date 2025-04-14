@@ -20,7 +20,7 @@ const priceRangeValues: string[] = ['$', '$$', '$$$', '$$$$'];
 
 const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolean, staticContent: StaticContent, filters: CategoryFilter[] }) => {
   const isFromMobile = useDeviceType(isMobile);
-  const { categories, price_range, delivery_time, setCategories, setDeliveryTime, setPriceRange, clearFilters } = useFilterStore();
+  const { categories, price_range, delivery_time, toggleCategories, setDeliveryTime, setPriceRange, clearFilters } = useFilterStore();
 
   const renderDeliveryTimeBadges = () => (
     deliveryTimeValues.map((item) => (
@@ -52,7 +52,7 @@ const FilterSideCard = ({ isMobile, staticContent, filters }: { isMobile: boolea
     filters.map((filter: CategoryFilter) => (
       <Badge
         key={filter.id}
-        onClick={() => setCategories(filter)}
+        onClick={() => toggleCategories(filter)}
         variant="outline"
         className={`rounded-lg border-munchies-gray py-2 px-3 cursor-pointer ${categories.some(category => category.id === filter.id) ? 'border-munchies-green' : 'border-munchies-gray'}`}
       >
